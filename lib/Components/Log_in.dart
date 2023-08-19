@@ -46,20 +46,22 @@ class _Log_inState extends State<Log_in> {
 
         padding: const EdgeInsets.fromLTRB(100, 100, 100, 0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
 
           crossAxisAlignment: CrossAxisAlignment.center,
 
           children: <Widget>[
             CircleAvatar(
-              radius: 100,
+              radius: 150,
               backgroundImage: AssetImage('assets/male.jpg'),
             ),
 
-
+            ButtonTheme(
+                minWidth: 300,
+                height: 100,
+                child:
             ElevatedButton(onPressed: () {
               Navigator.pushReplacementNamed(context, 'Student_Home');}, child: Text('Track'), )
-
+            )
 
           ],
         ),
