@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_config/flutter_config.dart';
-import 'package:label_marker/label_marker.dart';
-
-void getKey () async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await FlutterConfig.loadEnvVariables();
-}
-
-
 
 
 class Student_Track extends StatefulWidget {
@@ -19,6 +10,9 @@ class Student_Track extends StatefulWidget {
 }
 
 class _Student_TrackState extends State<Student_Track> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +22,13 @@ class _Student_TrackState extends State<Student_Track> {
               height: 100,
               child:
               ElevatedButton(onPressed: () {
-                Navigator.pushReplacementNamed(context, 'Student_Home');}, child: Text('Track'), )
+                Navigator.pushReplacementNamed(context, 'Loading');}, child: Text('Track'), )
           ),
       )
     );
   }
 }
+
 
 
 
@@ -85,7 +80,7 @@ class _Student_HomeState extends State<Student_Home> {
   @override
   void initState() {
     // TODO: implement initState
-    getKey();
+
     addCustomIcon();
     super.initState();
   }
