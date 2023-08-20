@@ -50,17 +50,16 @@ class _Log_inState extends State<Log_in> {
           crossAxisAlignment: CrossAxisAlignment.center,
 
           children: <Widget>[
+
+            GestureDetector(
+
+              child :
             CircleAvatar(
               radius: 150,
-              backgroundImage: AssetImage('assets/male.jpg'),
+              backgroundImage: AssetImage('assets/driver.jpg'),
             ),
-
-            ButtonTheme(
-                minWidth: 300,
-                height: 100,
-                child:
-            ElevatedButton(onPressed: () {
-              Navigator.pushReplacementNamed(context, 'Student_Home');}, child: Text('Track'), )
+              onTap: () {
+                    Navigator.pushReplacementNamed(context, 'Student_Track');}
             )
 
           ],

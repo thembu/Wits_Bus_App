@@ -9,6 +9,37 @@ void getKey () async {
 }
 
 
+
+
+class Student_Track extends StatefulWidget {
+  const Student_Track({super.key});
+
+  @override
+  State<Student_Track> createState() => _Student_TrackState();
+}
+
+class _Student_TrackState extends State<Student_Track> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body :  Center(
+        child: ButtonTheme(
+              minWidth: 300,
+              height: 100,
+              child:
+              ElevatedButton(onPressed: () {
+                Navigator.pushReplacementNamed(context, 'Student_Home');}, child: Text('Track'), )
+          ),
+      )
+    );
+  }
+}
+
+
+
+
+
+
 class Student_Home extends StatefulWidget {
 
 
