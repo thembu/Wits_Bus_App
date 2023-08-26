@@ -32,7 +32,7 @@ class _Log_inState extends State<Log_in> {
 
     return  Scaffold(
 
-      appBar:AppBar( title : Text('Bus tracking app' ),
+      appBar:AppBar( title : Text('Bus tracking app' ,),
           centerTitle : true,
 
       ),
@@ -40,27 +40,45 @@ class _Log_inState extends State<Log_in> {
       body:
       Flex (
       direction: Axis.vertical,
-      children : [
-
+      children : <Widget>[
+      SizedBox(height: 50,)  ,
+      Text('Are you a driver or Student ?',  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
       Padding(
 
-        padding: const EdgeInsets.fromLTRB(100, 100, 100, 0),
-        child: Column(
+        padding: const EdgeInsets.fromLTRB(50, 250, 50, 0),
+        child: Row(
 
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
 
           children: <Widget>[
 
-            GestureDetector(
+
+             GestureDetector(
 
               child :
             CircleAvatar(
-              radius: 150,
+              radius: 50,
               backgroundImage: AssetImage('assets/driver.jpg'),
             ),
               onTap: () {
-                    Navigator.pushReplacementNamed(context, 'Student_Track');}
+                    Navigator.pushReplacementNamed(context, 'Driver_Load');}
+            ),
+
+            VerticalDivider(width: 3,),
+            SizedBox(width: 30,),
+            GestureDetector(
+
+                child :
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage('assets/student.png'),
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, 'Student_Home');}
             )
+
+
+
 
           ],
         ),

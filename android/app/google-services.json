@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1034242676577",
+    "project_id": "wits-bus-app-18e03",
+    "storage_bucket": "wits-bus-app-18e03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034242676577:android:867dd1ec7a2bb5ca845720",
+        "android_client_info": {
+          "package_name": "com.example.wits_bus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034242676577-kjuumudkg9u1jj7prj01ankm79f2mf0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKBTQD2wljhQJJZj2dM4si_R8rna9i1z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034242676577-kjuumudkg9u1jj7prj01ankm79f2mf0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
