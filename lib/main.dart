@@ -1,24 +1,34 @@
 
-
-
+import 'package:wits_bus/models/Driver.dart';
+import 'package:wits_bus/screens/Driver_Load.dart';
+import 'package:wits_bus/screens/Home.dart';
+import 'package:wits_bus/screens/Login.dart';
+import 'package:wits_bus/screens/splash.dart';
+import 'package:wits_bus/wrapper.dart';
+import 'package:wits_bus/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:wits_bus/Components/Driver_Home.dart';
-import 'package:wits_bus/Components/Driver_Load.dart';
-import 'package:wits_bus/Components/Log_in.dart';
-import 'package:wits_bus/Components/Student_Home.dart';
-import 'package:wits_bus/Components/Loading.dart';
-
-void main() async {
-  runApp(MaterialApp(
-    initialRoute: '/Login',
-    routes: {
-      '/Login': (context) => Log_in(),
-      'Student_Home' : (context) => Student_Home(),
-         'Loading' : (context) => Loading(),
-      'Driver_Load' :(context) => Driver_Load(),
-      'Driver_Home' : (context) => Driver_Home(),
-
-    },
-  ));
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<Driver?>.value( //we are now listening to the user stream
+      value: AuthService().user,
+      catchError: (_, err) =>  null,
+      initialData: null,
+      child: MaterialApp(
+        home: Splash_Screen(),
+
+      ),
+    );
+  }
+}

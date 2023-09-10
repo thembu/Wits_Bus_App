@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 
+import 'Driver_Home.dart';
+
 class Driver_Load extends StatefulWidget {
   const Driver_Load({super.key});
 
@@ -10,8 +12,6 @@ class Driver_Load extends StatefulWidget {
 }
 
 class _Driver_LoadState extends State<Driver_Load> {
-
-
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -49,59 +49,58 @@ class _Driver_LoadState extends State<Driver_Load> {
     return await Geolocator.getCurrentPosition();
   }
 
-
   String? pos;
 
-  final LocationSettings locationSettings = LocationSettings(
+  final LocationSettings locationSettings = const LocationSettings(
     accuracy: LocationAccuracy.high,
     distanceFilter: 100,
   );
-  StreamSubscription<Position> positionStream = Geolocator.getPositionStream().listen(
-          (Position? position) {
-        print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
-      });
-
-
-
-
-
-
-
-
+  StreamSubscription<Position> positionStream =
+      Geolocator.getPositionStream().listen((Position? position) {
+    print(position == null
+        ? 'Unknown'
+        : '${position.latitude.toString()}, ${position.longitude.toString()}');
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+      ),
       body: Column(
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.8,
-    child: Expanded(
-    child: Hero(
-    tag: 'bus',
-    child: Container(
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.only(
-    bottomLeft: Radius.circular(30),
-    bottomRight: Radius.circular(30)),
-    image: DecorationImage(
-    image: AssetImage('assets/wallpaper.jpeg'),
-    fit: BoxFit.cover,
-             ),
-             ),
-             ),
+            child: Expanded(
+              child: Hero(
+                tag: 'bus',
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30)),
+                    image: DecorationImage(
+                      image: AssetImage('assets/wallpaper.jpeg'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
-     ),
-          SizedBox(height: 10,),
-          ElevatedButton(onPressed: () {
-            Navigator.pushReplacementNamed(context, 'Driver_Home');
-            _determinePosition();
+          SizedBox(
+            height: 10,
+          ),
+          ElevatedButton(
+              onPressed: () {
+               Navigator.push(context, MaterialPageRoute(builder: (context) => Driver_Home()));
+                _determinePosition();
 
-            ;}, child: Text('Share Location'))
+                ;
+              },
+              child: Text('Share Location'))
         ],
       ),
-
     );
   }
 }
