@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wits_bus/models/Driver.dart';
+import 'package:wits_bus/screens/Drivers_tile.dart';
 
 class Availabe_Drivers extends StatefulWidget {
   const Availabe_Drivers({super.key});
@@ -9,26 +13,47 @@ class Availabe_Drivers extends StatefulWidget {
 
 class _Availabe_DriversState extends State<Availabe_Drivers> {
 
-  List buses = [
-    {'id': 0, 'name': 'Bus driver 1', 'route': 'KNK - EOH - MAIN'},
-    {'id': 0, 'name': 'Bus driver 1', 'route': 'KNK - EOH - MAIN'},
-    {'id': 1, 'name': 'Bus driver 2', 'route': 'WJ - WEC - MAIN'},
-    {'id': 2, 'name': 'Bus driver 3', 'route': 'NSW - AMH - MAIN'},
-  ];
 
+  var collection = FirebaseFirestore.instance.collection('location');
 
+  late List<Map<String, dynamic>> drivers;
+  bool isLoaded = false;
+
+  _increment() async {
+    late List<Map<String, dynamic>> tempList = [];
+
+    var data = await collection.get();
+
+    data.docs.forEach((driver) {
+      print(driver.data());
+      tempList.add(driver.data()); // adds all fields to list
+    });
+
+    setState(() {
+      drivers = tempList;
+      isLoaded = true;
+    });
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _increment();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+
+
     return Container(
       color: Colors.white,
-      child: ListView.builder(
+      child: isLoaded ? ListView.builder(
         physics: ClampingScrollPhysics(),
-        itemCount: buses.length,
-        itemBuilder: (BuildContext context , int index) {
-          final bus = buses[index];
-
-          if(index == 0 ) {
+        itemCount: drivers.length,
+        itemBuilder: ( context ,  index) {
+          if(index == 0) {
             return Column(
               children: [
                 SizedBox(width : 50 , child: Divider(thickness: 5,),),
@@ -37,18 +62,18 @@ class _Availabe_DriversState extends State<Availabe_Drivers> {
             );
           }
 
-          return Card(
+          return  Card(
             margin: EdgeInsets.zero ,
             elevation: 0,
             child: ListTile(
               onTap: () {},
               leading: CircleAvatar(radius: 20, backgroundImage: AssetImage('assets/man.png'),),
-              title: Text(bus['name']),
-              trailing: Text(bus['route']),
+              title: Text(drivers[index]["name"] ?? "not given"),
+              trailing: Text(drivers[index]["route"] ?? "not given"),
             ),
-          );
+          );;
         },
-      ) ,
+      )  : Text('no data'),
     );
 
 

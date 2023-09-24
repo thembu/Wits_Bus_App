@@ -1,26 +1,30 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:wits_bus/models/Driver.dart';
+import 'package:wits_bus/models/Users.dart';
+
+import 'Database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Driver? _driver(User driver) {
-    return driver != null ? Driver(uid: driver.uid) : null;
+  Users? _driver(User driver) {
+    return driver != null ? Users(uid: driver.uid) : null;
   }
 
-  Stream<Driver?> get user {
+  Stream<Users?> get user {
     return _auth.authStateChanges().map((User? driver) => _driver(driver!));
   }
 
   Future register(String email, String password) async {
     try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
       User? driver = result.user;
 
-      return _driver(driver!);
+      await DatabaseService(uid: driver!.uid).uploadUser('anon', 'null');
+
+      return _driver(driver);
     } catch (e) {
       print(e);
       return null;
@@ -33,6 +37,7 @@ class AuthService {
           email: email, password: password);
 
       User? driver = result.user;
+
 
       return _driver(driver!);
     } catch (e) {
@@ -57,6 +62,7 @@ class AuthService {
       accessToken: gAuth.accessToken,
       idToken: gAuth.idToken,
     );
+
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
 

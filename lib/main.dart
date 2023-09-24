@@ -1,6 +1,5 @@
 
-import 'package:wits_bus/models/Driver.dart';
-import 'package:wits_bus/screens/Driver_Load.dart';
+import 'package:wits_bus/models/Users.dart';
 import 'package:wits_bus/screens/Home.dart';
 import 'package:wits_bus/screens/Login.dart';
 import 'package:wits_bus/screens/splash.dart';
@@ -9,6 +8,8 @@ import 'package:wits_bus/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+
+import 'models/Driver.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<Driver?>.value( //we are now listening to the user stream
+    return StreamProvider<Users?>.value( //we are now listening to the user stream
       value: AuthService().user,
       catchError: (_, err) =>  null,
       initialData: null,

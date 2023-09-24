@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wits_bus/screens/Driver_Load.dart';
+import 'package:wits_bus/screens/Driver_Home.dart';
 import 'package:wits_bus/screens/Student_Home.dart';
 import 'package:wits_bus/services/auth.dart';
+import 'package:location/location.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,6 +19,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -50,12 +54,12 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
-                  child: CircleAvatar(
+                  child:  CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('assets/driver.jpg'),
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder:  (context) => Driver_Load()));
+                    Navigator.push(context, MaterialPageRoute(builder:  (context) => Driver_Home()));
                   }),
               VerticalDivider(
                 width: 3,
