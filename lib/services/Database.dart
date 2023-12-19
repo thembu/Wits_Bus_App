@@ -15,7 +15,7 @@ class DatabaseService {
 
   final CollectionReference driver_data =  FirebaseFirestore.instance.collection('location');
 
-  Future uploadUser(String name , String  route) async {
+  Future uploadDriver(String name , String  route) async {
 
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
@@ -57,6 +57,8 @@ class DatabaseService {
 
 
   }
+
+
 
 
 

@@ -3,18 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wits_bus/screens/Loading.dart';
 import 'package:wits_bus/services/auth.dart';
+import 'package:wits_bus/wrapper.dart';
+import 'package:location/location.dart';
 
 class Log_in extends StatefulWidget {
+
+
+  static var user_latitude ;
+  static var user_longitude;
 
   final Function toggleView;
 
   Log_in({required this.toggleView});
+
+
 
   @override
   State<Log_in> createState() => _Log_inState();
 }
 
 class _Log_inState extends State<Log_in> {
+
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
@@ -23,6 +32,7 @@ class _Log_inState extends State<Log_in> {
   String password = '';
   String error = '';
   bool loading  = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +56,16 @@ class _Log_inState extends State<Log_in> {
 
                 SizedBox(height: 10,),
                 Text(
-                  'Hello',
+                  'Welcome back',
                   style: GoogleFonts.bebasNeue(fontSize: 52),
                 ),
 
                 SizedBox(height: 10,),
                 Text(
-                  'Welcome back',
+                  'Log in with student email ',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 20,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
@@ -68,7 +78,14 @@ class _Log_inState extends State<Log_in> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextFormField(
-                          validator: (val) => val!.isEmpty  ? 'Enter an email' : null,
+                          validator: (val)  {
+                            if(!val!.contains("@students.wits.ac.za") && !val.contains("@wits.ac.za") ) {
+                              return 'Use student or driver email';
+                            }
+
+                            return null;
+
+                          },
                           onChanged: (val) => setState(() {
                             email = val;
                           }),
@@ -127,6 +144,13 @@ class _Log_inState extends State<Log_in> {
                         setState(() {
                           loading = true;
                         });
+
+                        if(!email.contains("@students.wits.ac.za")) {
+                          Wrapper.student = false;
+                        } else if(!email.contains("@wits.ac.za")) {
+                          Wrapper.student = true;
+                        }
+
                         dynamic result = await _auth.signIn(email, password);
 
                         if(result == null) {
@@ -172,8 +196,10 @@ class _Log_inState extends State<Log_in> {
                               color: Colors.blue ,
                             fontWeight: FontWeight.bold,
                           ),),
-                      onTap: () {
+                      onTap: () async{
                            widget.toggleView();
+
+
                       },
                     )
                   ],
@@ -209,6 +235,7 @@ class _Log_inState extends State<Log_in> {
                             radius: 35,),
                           onTap: () async{
                                  _auth.Sign_in_google();
+
                           }
                           ,
                         )
@@ -224,6 +251,8 @@ class _Log_inState extends State<Log_in> {
       ),
     );
   }
+
+
 }
 
 

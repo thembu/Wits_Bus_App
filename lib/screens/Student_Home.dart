@@ -1,41 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:custom_map_markers/custom_map_markers.dart';
-import 'package:location/location.dart';
-import 'package:provider/provider.dart';
-import 'package:wits_bus/models/Driver.dart';
 import 'package:wits_bus/screens/Available_Drivers.dart';
-import 'package:wits_bus/services/Database.dart';
 
-import 'Drivers_tile.dart';
+import '../services/auth.dart';
+
 
 class Student_Home extends StatefulWidget {
   const Student_Home({super.key});
+
+
+
 
   @override
   State<Student_Home> createState() => _Student_HomeState();
 }
 
 class _Student_HomeState extends State<Student_Home> {
-  static const _initialCameraPosition =
-      CameraPosition(target: LatLng(-26.17825, 28.035), zoom: 17);
 
-  late GoogleMapController _googleMapController;
+  final AuthService _auth = AuthService();
 
-
+   static const _initialCameraPosition = CameraPosition(target:  LatLng(-26.1929 , 28.0305), zoom: 17);
     double? latitude;
     double? longitude;
 
     Map<MarkerId, Marker> markers = <MarkerId, Marker>{}; // CLASS MEMBER, MAP OF MARKS
 
-    void onMapCreated(GoogleMapController controller) async {
-
-      _googleMapController = controller;
-
-
-    }
 
      initMarker(specify, specifyId) async {
       var markerIdVal = specifyId;
@@ -66,6 +56,12 @@ class _Student_HomeState extends State<Student_Home> {
     }
 
 
+    void onMapCreated(GoogleMapController controller) {
+      Available_Drivers.googleMapController = controller;
+    }
+
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -77,17 +73,24 @@ class _Student_HomeState extends State<Student_Home> {
   @override
   void dispose() {
     // TODO: implement dispose
-    _googleMapController.dispose();
     super.dispose();
   }
 
 
   void _showDrivers() {
-      showModalBottomSheet(context: context, builder: (context) {
+      showModalBottomSheet(
+          context: context,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20) )
+          ),
+          builder: (context) {
+
         return Container(
           height: MediaQuery.of(context).size.height * 0.30,
           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-          child: Availabe_Drivers(),
+          margin:EdgeInsets.only(left: 20 , right: 10, bottom: 10 ) ,
+
+          child: Available_Drivers(),
         );
       }, isScrollControlled: true);
     }
@@ -108,7 +111,8 @@ class _Student_HomeState extends State<Student_Home> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/menu')
+             ;
             },
           ),
           actions: <Widget>[
@@ -129,9 +133,8 @@ class _Student_HomeState extends State<Student_Home> {
                   child: GoogleMap(
                     zoomControlsEnabled: true,
                     initialCameraPosition: _initialCameraPosition,
-                    onMapCreated : onMapCreated,
+                    onMapCreated : onMapCreated ,
                     markers: Set<Marker>.of(markers.values)
-
 
                   ),
                 );

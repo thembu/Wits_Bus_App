@@ -1,11 +1,8 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:wits_bus/screens/Driver_Home.dart';
 import 'package:wits_bus/screens/Student_Home.dart';
 import 'package:wits_bus/services/auth.dart';
-import 'package:location/location.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -22,7 +19,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Bus tracking app',
         ),
         centerTitle: false,
@@ -31,7 +28,7 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 _auth.signOut();
               },
-              icon: Icon(Icons.person , size: 40,),
+              icon: const Icon(Icons.person , size: 40,),
 
           ),
               
@@ -41,10 +38,10 @@ class _HomeState extends State<Home> {
       body:
 
       Flex(direction: Axis.vertical, children: <Widget>[
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
-        Text(
+        const Text(
           'Are you a driver or Student ?',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -54,26 +51,26 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
-                  child:  CircleAvatar(
+                  child:  const CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('assets/driver.jpg'),
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder:  (context) => Driver_Home()));
+                    Navigator.push(context, MaterialPageRoute(builder:  (context) => const Driver_Home()));
                   }),
-              VerticalDivider(
+              const VerticalDivider(
                 width: 3,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 30,
               ),
               GestureDetector(
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('assets/student.png'),
                   ),
                   onTap: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => Student_Home()));
+                    Navigator.push(context,MaterialPageRoute(builder: (context) =>  Student_Home()));
                   })
             ],
           ),

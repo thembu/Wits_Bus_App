@@ -23,6 +23,7 @@ class _RegisterState extends State<Register> {
   String password = '';
   String email = '';
   String error = '';
+  dynamic result;
   bool loading = false;
 
 
@@ -66,7 +67,15 @@ class _RegisterState extends State<Register> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextFormField(
-                        validator: (val) => val!.isEmpty ? 'Enter an email' : null,
+                        validator: (val)  {
+                          if(!val!.contains("@students.wits.ac.za") && !val.contains("@wits.ac.za") ) {
+                            return 'Use student or driver email';
+                          }
+
+                          return null;
+
+                        },
+
                         onChanged: (val) {
                           setState(() {
                             email = val;
@@ -157,7 +166,12 @@ class _RegisterState extends State<Register> {
                         setState(() {
                           loading = true;
                         });
-                        dynamic result = await _auth.register(email, password);
+                        if(email.contains("@wits.ac.za")) {
+                           result = await _auth.registerDriver(email, password);
+                        }
+                        else if (email.contains("@students.wits.ac.za")) {
+                          result = await _auth.registerUser(email, password);
+                        }
                         if(result ==  null) {
                           setState(() => error = 'please supply a valid email');
                           loading = false;

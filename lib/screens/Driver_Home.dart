@@ -7,6 +7,7 @@ import 'package:location/location.dart' ;
 import 'package:provider/provider.dart';
 import 'package:wits_bus/services/Database.dart';
 import 'package:permission_handler/permission_handler.dart' as permission;
+import 'package:wits_bus/services/auth.dart';
 
 
 import '../models/Driver.dart';
@@ -25,13 +26,11 @@ class Driver_Home extends StatefulWidget {
 
 class _Driver_HomeState extends State<Driver_Home> {
 
+  final AuthService _auth = AuthService();
+
     Location location = new Location();
     LocationData? _currentPosition;
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
 
   fetchLocation() async {
@@ -68,6 +67,12 @@ class _Driver_HomeState extends State<Driver_Home> {
 
   }
 
+  @override
+  void initState() {
+    super.initState();
+    fetchLocation();
+  }
+
 
   String bus = 'Choose a bus';
   String? name;
@@ -84,6 +89,7 @@ class _Driver_HomeState extends State<Driver_Home> {
     'EOH -> KNK -> MAIN'
   ];
 
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -94,6 +100,7 @@ class _Driver_HomeState extends State<Driver_Home> {
 
   Genders? gender = Genders.male;
   String?  selectedValue;
+
 
 
 
@@ -118,7 +125,7 @@ class _Driver_HomeState extends State<Driver_Home> {
             title: Text('Driver Home page'),
             centerTitle: true,
             leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () {
-              Navigator.pop(context);
+              _auth.signOut();
             },),
           ),
 
@@ -210,7 +217,7 @@ class _Driver_HomeState extends State<Driver_Home> {
 
                   ElevatedButton(
                     onPressed: () async{
-                      await _driver.uploadUser(name!, selectedValue!);
+                      await _driver.uploadDriver(name!, selectedValue!);
                     },
 
 

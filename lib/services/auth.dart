@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:wits_bus/models/Driver.dart';
 import 'package:wits_bus/models/Users.dart';
 
 import 'Database.dart';
@@ -16,13 +15,13 @@ class AuthService {
     return _auth.authStateChanges().map((User? driver) => _driver(driver!));
   }
 
-  Future register(String email, String password) async {
+  Future registerDriver(String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
       User? driver = result.user;
 
-      await DatabaseService(uid: driver!.uid).uploadUser('anon', 'null');
+      await DatabaseService(uid: driver!.uid).uploadDriver('anon', 'null');
 
       return _driver(driver);
     } catch (e) {
@@ -30,6 +29,21 @@ class AuthService {
       return null;
     }
   }
+
+  Future registerUser(String email, String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+
+      User? driver = result.user;
+
+      return _driver(driver!);
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+
 
   Future signIn(String email, String password) async {
     try {
