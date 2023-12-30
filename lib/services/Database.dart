@@ -38,18 +38,22 @@ class DatabaseService {
 
     _currentPosition = await location.getLocation();
 
+    //initial upload
+
+
+
     location.onLocationChanged.listen((LocationData currentLocation) async {
 
 
       _currentPosition = currentLocation;
 
-         await driver_data.doc(uid).set({
-          'uid' : uid,
-          'name' : name,
-          'route' : route,
-          'latitude' : _currentPosition?.latitude,
-          'longitude' : _currentPosition?.longitude
-        });
+      await driver_data.doc(uid).set({
+        'uid' : uid,
+        'name' : name,
+        'route' : route,
+        'latitude' : _currentPosition?.latitude,
+        'longitude' : _currentPosition?.longitude
+      });
 
     });
 
