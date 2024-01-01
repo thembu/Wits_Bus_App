@@ -1,5 +1,6 @@
 
 import 'package:wits_bus/models/Users.dart';
+import 'package:wits_bus/screens/Driver_Home.dart';
 import 'package:wits_bus/screens/Home.dart';
 import 'package:wits_bus/screens/Login.dart';
 import 'package:wits_bus/screens/Menu.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/map' : (context) => Student_Home(),
           '/menu' : (context) => Menu(),
+          '/driver' :(context) => Driver_Home(),
           '/schedule' : (context) => Bus_Schedule()
         },
       ),

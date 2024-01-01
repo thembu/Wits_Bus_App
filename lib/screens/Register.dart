@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wits_bus/screens/Loading.dart';
 
 import '../services/auth.dart';
+import '../wrapper.dart';
 
 class Register extends StatefulWidget {
 
@@ -168,6 +169,7 @@ class _RegisterState extends State<Register> {
                         });
                         if(email.contains("@wits.ac.za")) {
                            result = await _auth.registerDriver(email, password);
+
                         }
                         else if (email.contains("@students.wits.ac.za")) {
                           result = await _auth.registerUser(email, password);
@@ -177,7 +179,13 @@ class _RegisterState extends State<Register> {
                           loading = false;
                         }
 
-                        widget.toggleView();
+                        if(!email.contains("@students.wits.ac.za")) {
+                          Wrapper.student = false;
+                        } else if(!email.contains("@wits.ac.za")) {
+                          Wrapper.student = true;
+                        }
+
+
                       }
 
 

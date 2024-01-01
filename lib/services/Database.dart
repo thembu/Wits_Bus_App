@@ -57,13 +57,11 @@ class DatabaseService {
 
     });
 
+    location.enableBackgroundMode(enable: true);
 
 
 
   }
-
-
-
 
 
   Driver? _userDataFromSnapshot(DocumentSnapshot snapshot) {

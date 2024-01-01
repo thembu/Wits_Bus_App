@@ -25,7 +25,6 @@ class AuthService {
 
       return _driver(driver);
     } catch (e) {
-      print(e);
       return null;
     }
   }
