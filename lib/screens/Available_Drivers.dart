@@ -73,33 +73,39 @@ class _Available_DriversState extends State<Available_Drivers> {
   }
 
   _increment() async {
-    late List<Map<String, dynamic>> tempList = [];
+    List<Map<String, dynamic>> tempList = [];
 
     var data = await collection.where('route', isNull: false).get();
-    data.docs.forEach((driver) {
+    for (var driver in data.docs) {
       tempList.add(driver.data()); // adds all fields to list
-    });
+    }
 
-    if(mounted) {
-      setState(() async {
+    if (mounted) {
+
+      setState(() {
         drivers = tempList;
 
-        for (int i = 0; i < drivers.length; i++) {
-          double distance = await Geolocator.distanceBetween(
-              user_latitude!, user_longitude!, drivers[i]['latitude'],
-              drivers[i]['longitude']);
-          distances.add(distance);
-          Available_Drivers.driver_latitude  = drivers[i]['latitude'];
-          Available_Drivers.driver_longitude  = drivers[i]['longitude'];
+        if (user_longitude != null && user_latitude != null) {
+          distances.clear(); // Clear the distances list before recalculating
+          for (int i = 0; i < drivers.length; i++) {
+            double distance = Geolocator.distanceBetween(
+                user_latitude!, user_longitude!, drivers[i]['latitude'],
+                drivers[i]['longitude']);
 
+            distances.add(distance);
+            print('distance gotten');
+
+          }
+
+          if (distances.isNotEmpty) {
+            Available_Drivers.driver_latitude = drivers[0]['latitude'];
+            Available_Drivers.driver_longitude = drivers[0]['longitude'];
+            isLoaded = true;
+          }
         }
-
-
-        if (distances.isNotEmpty) isLoaded = true;
       });
     }
   }
-
   @override
   void initState() {
     super.initState();
