@@ -23,7 +23,7 @@ class MyDrawer extends StatelessWidget {
           MyListTile(
               icon: Icons.home,
               text: 'H O M E',
-              onTap: () => Navigator.pop(context),
+              onTap: () => Navigator.pushReplacementNamed(context, '/menu'),
           ),
 
 

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wits_bus/screens/Available_Drivers.dart';
+import 'package:wits_bus/screens/drawer.dart';
 
 import '../services/auth.dart';
 
@@ -61,6 +62,20 @@ class _Student_HomeState extends State<Student_Home> {
     }
 
 
+  void signOut() {
+    _auth.signOut();
+  }
+
+  void goToProfilePage() {
+    //pop menu drawer
+
+    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, '/profile');
+
+  }
+
+
+
 
   @override
   void initState() {
@@ -106,15 +121,10 @@ class _Student_HomeState extends State<Student_Home> {
 
           backgroundColor: Colors.blue,
           elevation: 0,
+
           title: Text('Bus Tracker'),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/menu')
-             ;
-            },
-          ),
+
           actions: <Widget>[
             TextButton.icon(
                 onPressed: () {
@@ -124,6 +134,8 @@ class _Student_HomeState extends State<Student_Home> {
                 label: Text('Track bus'))
           ],
         ),
+
+        drawer: MyDrawer(onProfileTap: goToProfilePage, onSignOut: signOut,),
 
 
         body: Stack(children: [

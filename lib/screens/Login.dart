@@ -197,6 +197,7 @@ class _Log_inState extends State<Log_in> {
                             fontWeight: FontWeight.bold,
                           ),),
                       onTap: () async{
+
                            widget.toggleView();
 
 

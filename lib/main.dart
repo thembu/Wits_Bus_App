@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           '/menu' : (context) => Menu(),
           '/driver' :(context) => Driver_Home(),
           '/schedule' : (context) => Bus_Schedule(),
-          '/profile' : (context) => Profile()
+          '/profile' : (context) => Profile(),
         },
       ),
     );
