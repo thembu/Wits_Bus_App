@@ -4,8 +4,10 @@ import 'package:wits_bus/screens/Driver_Home.dart';
 import 'package:wits_bus/screens/Home.dart';
 import 'package:wits_bus/screens/Login.dart';
 import 'package:wits_bus/screens/Menu.dart';
+import 'package:wits_bus/screens/drawer.dart';
 import 'package:wits_bus/screens/Student_Home.dart';
 import 'package:wits_bus/screens/bus_schedule.dart';
+import 'package:wits_bus/screens/profile.dart';
 import 'package:wits_bus/screens/splash.dart';
 import 'package:wits_bus/wrapper.dart';
 import 'package:wits_bus/services/auth.dart';
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
           '/map' : (context) => Student_Home(),
           '/menu' : (context) => Menu(),
           '/driver' :(context) => Driver_Home(),
-          '/schedule' : (context) => Bus_Schedule()
+          '/schedule' : (context) => Bus_Schedule(),
+          '/profile' : (context) => Profile()
         },
       ),
     );

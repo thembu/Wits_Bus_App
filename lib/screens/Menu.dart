@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
+import 'package:wits_bus/screens/drawer.dart';
 import 'package:wits_bus/services/auth.dart';
 
 class Menu extends StatefulWidget {
@@ -15,6 +16,18 @@ class _MenuState extends State<Menu> {
 
   final AuthService _auth = AuthService();
 
+  void signOut() {
+    _auth.signOut();
+  }
+
+  void goToProfilePage() {
+    //pop menu drawer
+
+    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, '/profile');
+
+  }
+
   @override
   void initState() {
     super.initState();
@@ -27,16 +40,12 @@ class _MenuState extends State<Menu> {
 
 
     return  Scaffold(
-           appBar: AppBar(title: Text('Menu'),
-               leading: IconButton(
-               icon: Icon(Icons.arrow_back),
-                onPressed: () {
-               _auth.signOut();
-             },
-           ),
-           ),
+           appBar: AppBar(title: Text('Menu'),), drawer: MyDrawer(
+      onProfileTap: goToProfilePage,
+      onSignOut: signOut,
+    ),
              body: Container(
-                 color: Colors.grey[200],
+                 color: Colors.grey[0],
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20,200, 20, 200),
                   child: GridView(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10), children: [
