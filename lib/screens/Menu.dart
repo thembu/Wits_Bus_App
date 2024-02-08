@@ -52,7 +52,7 @@ class _MenuState extends State<Menu> {
                     GestureDetector(child: Container(foregroundDecoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/schedule.jpg'),fit: BoxFit.fill),borderRadius: BorderRadius.circular(20))), onTap: (){
                       Navigator.pushReplacementNamed(context, '/schedule');
                     },),
-                    GestureDetector(child: Container(foregroundDecoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/map.png'), fit: BoxFit.fill),borderRadius: BorderRadius.circular(20))),onTap: () {
+                    GestureDetector(child: Container(foregroundDecoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/wallpaper.jpeg'), fit: BoxFit.fill),borderRadius: BorderRadius.circular(20))),onTap: () {
                       Navigator.pushReplacementNamed(context, '/map');
                     },),
 

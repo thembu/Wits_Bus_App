@@ -27,7 +27,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: 'assets/wallpaper.jpeg',
+      splash: 'assets/kudus.png',
       nextScreen: Wrapper(),
       splashTransition: SplashTransition.scaleTransition,
       splashIconSize: 150,

@@ -51,7 +51,8 @@ class _Log_inState extends State<Log_in> {
 
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage('assets/wallpaper.jpeg'),
+                  backgroundImage: AssetImage('assets/kudus.png'),
+                  backgroundColor: Colors.white,
                 ),
 
                 SizedBox(height: 10,),
