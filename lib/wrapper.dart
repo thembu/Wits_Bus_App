@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:wits_bus/authenticate.dart';
 import 'package:wits_bus/models/Driver.dart';
 import 'package:wits_bus/models/Users.dart';
-import 'package:wits_bus/screens/Driver_Home.dart';
-import 'package:wits_bus/screens/Home.dart';
-import 'package:wits_bus/screens/Login.dart';
-import 'package:wits_bus/screens/Menu.dart';
-import 'package:wits_bus/screens/Student_Home.dart';
+import 'package:wits_bus/screens/driver_screen/Driver_Home.dart';
+import 'package:wits_bus/screens/menu/Home.dart';
+import 'package:wits_bus/screens/registration_log_in/Login.dart';
+import 'package:wits_bus/screens/menu/Menu.dart';
+import 'package:wits_bus/screens/student_screen/Student_Home.dart';
 
 class Wrapper extends StatefulWidget {
   static bool student = true;

@@ -1,5 +1,5 @@
-import 'package:wits_bus/screens/Register.dart';
-import 'package:wits_bus/screens/Login.dart';
+import 'package:wits_bus/screens/registration_log_in/Register.dart';
+import 'package:wits_bus/screens/registration_log_in/Login.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {

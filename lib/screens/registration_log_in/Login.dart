@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wits_bus/screens/Loading.dart';
+import 'package:wits_bus/screens/menu/Loading.dart';
 import 'package:wits_bus/services/auth.dart';
 import 'package:wits_bus/wrapper.dart';
 import 'package:location/location.dart';

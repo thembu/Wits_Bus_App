@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wits_bus/screens/Loading.dart';
+import 'package:wits_bus/screens/menu/Loading.dart';
 
-import '../services/auth.dart';
-import '../wrapper.dart';
+import '../../services/auth.dart';
+import '../../wrapper.dart';
 
 class Register extends StatefulWidget {
 

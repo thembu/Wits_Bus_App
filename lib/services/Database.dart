@@ -15,7 +15,7 @@ class DatabaseService {
 
   final CollectionReference driver_data =  FirebaseFirestore.instance.collection('location');
 
-  Future uploadDriver(String name , String  route) async {
+  Future uploadDriver(String  route) async {
 
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
@@ -49,7 +49,6 @@ class DatabaseService {
 
       await driver_data.doc(uid).set({
         'uid' : uid,
-        'name' : name,
         'route' : route,
         'latitude' : _currentPosition?.latitude,
         'longitude' : _currentPosition?.longitude
@@ -65,7 +64,7 @@ class DatabaseService {
 
 
   Driver? _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return Driver(uid: uid, name: snapshot.get('name') , route: snapshot.get('route'), latitude: snapshot.get('latitude'), longitude: snapshot.get('longitude'));
+    return Driver(uid: uid,  route: snapshot.get('route'), latitude: snapshot.get('latitude'), longitude: snapshot.get('longitude'));
   }
 
   Stream<Driver?> get userData {

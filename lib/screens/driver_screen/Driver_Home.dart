@@ -10,8 +10,8 @@ import 'package:permission_handler/permission_handler.dart' as permission;
 import 'package:wits_bus/services/auth.dart';
 
 
-import '../models/Driver.dart';
-import '../models/Users.dart';
+import '../../models/Driver.dart';
+import '../../models/Users.dart';
 
 
 enum Genders{male , female}
@@ -75,7 +75,6 @@ class _Driver_HomeState extends State<Driver_Home> {
 
 
   String bus = 'Choose a bus';
-  String? name;
 
   var buses = [ // list of buses at wits and routes
     'Choose a bus',
@@ -143,24 +142,6 @@ class _Driver_HomeState extends State<Driver_Home> {
 
                   SizedBox(height: 20,),
 
-                  TextFormField(
-                      onChanged:(val)  => setState(() => name = val),
-                      decoration: new InputDecoration(
-                      labelText: "Enter name and surname",
-                      fillColor: Colors.white,
-                      border: new OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide: new BorderSide(
-                        ),
-                      ),
-                      //fillColor: Colors.green
-                    ),
-
-                    keyboardType: TextInputType.emailAddress,
-                    style: new TextStyle(
-                      fontFamily: "Poppins",
-                    ),
-                  ),
 
                   SizedBox(height: 20,),
 
@@ -217,7 +198,7 @@ class _Driver_HomeState extends State<Driver_Home> {
 
                   ElevatedButton(
                     onPressed: () async{
-                      await _driver.uploadDriver(name!, selectedValue!);
+                      await _driver.uploadDriver(selectedValue!);
                     },
 
 

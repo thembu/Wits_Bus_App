@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
-import 'package:wits_bus/screens/drawer.dart';
+import 'package:wits_bus/screens/student_screen/drawer.dart';
 import 'package:wits_bus/services/auth.dart';
 
 class Menu extends StatefulWidget {

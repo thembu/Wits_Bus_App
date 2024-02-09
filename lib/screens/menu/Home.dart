@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:wits_bus/screens/Driver_Home.dart';
-import 'package:wits_bus/screens/Student_Home.dart';
+import 'package:wits_bus/screens/driver_screen/Driver_Home.dart';
+import 'package:wits_bus/screens/student_screen/Student_Home.dart';
 import 'package:wits_bus/services/auth.dart';
 
 class Home extends StatefulWidget {

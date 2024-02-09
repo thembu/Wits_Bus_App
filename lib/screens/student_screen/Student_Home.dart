@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:wits_bus/screens/Available_Drivers.dart';
-import 'package:wits_bus/screens/drawer.dart';
+import 'package:wits_bus/screens/student_screen/Available_Drivers.dart';
+import 'package:wits_bus/screens/student_screen/drawer.dart';
 
-import '../services/auth.dart';
+import '../../services/auth.dart';
 
 
 class Student_Home extends StatefulWidget {

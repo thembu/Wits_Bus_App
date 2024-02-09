@@ -21,7 +21,7 @@ class AuthService {
 
       User? driver = result.user;
 
-      await DatabaseService(uid: driver!.uid).uploadDriver('anon', 'null');
+      await DatabaseService(uid: driver!.uid).uploadDriver('null');
 
       return _driver(driver);
     } catch (e) {

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:http/http.dart';
 
 class Available_Drivers extends  StatefulWidget{
 
@@ -140,8 +139,8 @@ class _Available_DriversState extends State<Available_Drivers> {
                 });
               },
               leading: const CircleAvatar(radius: 20, backgroundImage: AssetImage('assets/man.png')),
-              title: Text(drivers[index]["name"] ?? "not given"),
-              trailing: Text('${drivers[index]["route"]} : ${(distances[index].round().toInt())/100}'),
+              title: Text('${drivers[index]["route"]} '),
+              trailing: Text('${(distances[index].round().toInt())/100}'),
             ),
           );
         },

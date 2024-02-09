@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wits_bus/screens/my_list_tile.dart';
+import 'package:wits_bus/screens/student_screen/my_list_tile.dart';
 
 class MyDrawer extends StatelessWidget {
 
