@@ -40,26 +40,62 @@ class _MenuState extends State<Menu> {
 
 
     return  Scaffold(
+      backgroundColor: Colors.grey[40],
            appBar: AppBar(title: Text('Menu'),), drawer: MyDrawer(
-      onProfileTap: goToProfilePage,
-      onSignOut: signOut,
+          onProfileTap: goToProfilePage,
+           onSignOut: signOut,
     ),
-             body: Container(
-                 color: Colors.grey[0],
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20,200, 20, 200),
-                  child: GridView(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10), children: [
-                    GestureDetector(child: Container(foregroundDecoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/schedule.jpg'),fit: BoxFit.fill),borderRadius: BorderRadius.circular(20))), onTap: (){
-                      Navigator.pushReplacementNamed(context, '/schedule');
-                    },),
-                    GestureDetector(child: Container(foregroundDecoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/wallpaper.jpeg'), fit: BoxFit.fill),borderRadius: BorderRadius.circular(20))),onTap: () {
-                      Navigator.pushReplacementNamed(context, '/map');
-                    },),
+             body:
 
-                  ]),
+             Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children :  [
+                    Row(
+                      children : [
+                    GestureDetector(child: _buildAvatarWithShadow('assets/schedule.jpg'), onTap: () => Navigator.pushReplacementNamed(context, '/schedule'),) ,
+                    SizedBox(width: 20,),
+
+                    GestureDetector(child: _buildAvatarWithShadow('assets/map.png'), onTap: () => Navigator.pushReplacementNamed(context, '/map'),)
+                 ]
+                    ),
+
+                    SizedBox(height: 40,),
+
+                    GestureDetector(child: _buildAvatarWithShadow('assets/time.jpg') , onTap: () => Navigator.pushReplacementNamed(context, '/timer'), )
+
+                  ]
+
                 ),
-            ),
+
+
+                ),
+
 
     );
   }
+
+  Widget _buildAvatarWithShadow(String imagePath) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: CircleAvatar(
+        radius: 90,
+        backgroundImage: AssetImage(imagePath),
+      ),
+    );
+  }
 }
+
+
+
+

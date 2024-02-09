@@ -9,6 +9,7 @@ import 'package:wits_bus/screens/student_screen/Student_Home.dart';
 import 'package:wits_bus/screens/student_screen/bus_schedule.dart';
 import 'package:wits_bus/screens/student_screen/profile.dart';
 import 'package:wits_bus/screens/registration_log_in/splash.dart';
+import 'package:wits_bus/screens/student_screen/timer.dart';
 import 'package:wits_bus/wrapper.dart';
 import 'package:wits_bus/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           '/driver' :(context) => Driver_Home(),
           '/schedule' : (context) => Bus_Schedule(),
           '/profile' : (context) => Profile(),
+          '/timer' : (context) => Timer()
         },
       ),
     );
