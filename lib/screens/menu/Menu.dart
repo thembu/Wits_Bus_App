@@ -56,7 +56,7 @@ class _MenuState extends State<Menu> {
                     GestureDetector(child: _buildAvatarWithShadow('assets/schedule.jpg'), onTap: () => Navigator.pushReplacementNamed(context, '/schedule'),) ,
                     SizedBox(width: 20,),
 
-                    GestureDetector(child: _buildAvatarWithShadow('assets/map.png'), onTap: () => Navigator.pushReplacementNamed(context, '/map'),)
+                    GestureDetector(child: _buildAvatarWithShadow('assets/wallpaper.jpeg'), onTap: () => Navigator.pushReplacementNamed(context, '/map'),)
                  ]
                     ),
 
@@ -89,7 +89,7 @@ class _MenuState extends State<Menu> {
         ],
       ),
       child: CircleAvatar(
-        radius: 90,
+        radius: 80,
         backgroundImage: AssetImage(imagePath),
       ),
     );

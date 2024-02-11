@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart' ;
 import 'package:provider/provider.dart';
+import 'package:wits_bus/screens/student_screen/drawer.dart';
 import 'package:wits_bus/services/Database.dart';
 import 'package:permission_handler/permission_handler.dart' as permission;
 import 'package:wits_bus/services/auth.dart';
@@ -101,14 +102,23 @@ class _Driver_HomeState extends State<Driver_Home> {
   String?  selectedValue;
 
 
+  void signOut() {
+    _auth.signOut();
+  }
+
+  void goToProfilePage() {
+    //pop menu drawer
+
+    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, '/profile');
+
+  }
 
 
 
   @override
   Widget build(BuildContext context) {
 
-    print(_currentPosition?.latitude);
-    print(_currentPosition?.longitude);
 
 
     final driver = Provider.of<Users>(context);
@@ -123,9 +133,11 @@ class _Driver_HomeState extends State<Driver_Home> {
           appBar: AppBar(
             title: Text('Driver Home page'),
             centerTitle: true,
-            leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () {
-              _auth.signOut();
-            },),
+
+          ),
+
+          drawer: MyDrawer(onProfileTap: goToProfilePage , onSignOut: signOut,
+
           ),
 
           body: Form(
