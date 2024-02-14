@@ -16,7 +16,7 @@ class _LoadingState extends State<Loading> {
     WidgetsFlutterBinding.ensureInitialized();
     await FlutterConfig.loadEnvVariables();
 
-    Navigator.pushReplacementNamed(context, 'Student_Home');
+    Navigator.pushReplacementNamed(context, '/menu');
 
   }
 

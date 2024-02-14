@@ -50,7 +50,7 @@ class _Log_inState extends State<Log_in> {
               children: [
 
                 CircleAvatar(
-                  radius: 70,
+                  radius: 50,
                   backgroundImage: AssetImage('assets/kudus.png'),
                   backgroundColor: Colors.white,
                 ),
@@ -71,10 +71,9 @@ class _Log_inState extends State<Log_in> {
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-
-
+                      borderRadius: BorderRadius.circular(12),
                     ),
 
                     child: Padding(
@@ -103,14 +102,15 @@ class _Log_inState extends State<Log_in> {
                 ),
 
 
-               SizedBox(height: 30,),
+               SizedBox(height: 10,),
 
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
                     ),
 
                     child: Padding(
@@ -220,6 +220,31 @@ class _Log_inState extends State<Log_in> {
 
                 SizedBox(height: 15,),
 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.grey[200],
+                        ),
+                        child:
+                        GestureDetector(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/google.png') ,
+                            radius: 35,),
+                          onTap: () async{
+                                 _auth.Sign_in_google();
+
+                          }
+                          ,
+                        )
+                    ),
+
+                  ],
+                )
 
               ],
             ),
