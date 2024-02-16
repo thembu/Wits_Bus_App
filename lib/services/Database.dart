@@ -14,6 +14,7 @@ class DatabaseService {
   DatabaseService({required this.uid});
 
   final CollectionReference driver_data =  FirebaseFirestore.instance.collection('location');
+  final CollectionReference user_data = FirebaseFirestore.instance.collection('times');
 
   Future uploadDriver(String  route) async {
 
@@ -62,10 +63,20 @@ class DatabaseService {
 
   }
 
+  Future uploadTime(time) async {
+
+    await user_data.doc(uid).set({
+      'times' : time,
+    });
+
+  }
+
 
   Driver? _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return Driver(uid: uid,  route: snapshot.get('route'), latitude: snapshot.get('latitude'), longitude: snapshot.get('longitude'));
   }
+
+
 
   Stream<Driver?> get userData {
 

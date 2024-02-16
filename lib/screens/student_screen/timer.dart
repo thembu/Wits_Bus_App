@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:wits_bus/services/Database.dart';
 
 class Timer extends StatefulWidget {
   const Timer({super.key});
@@ -11,7 +12,7 @@ class Timer extends StatefulWidget {
 
 class _TimerState extends State<Timer> {
 
-  final CollectionReference user_data =  FirebaseFirestore.instance.collection('time');
+  final CollectionReference users =  FirebaseFirestore.instance.collection('time');
   late List<Map<String, dynamic>> pick_up_time;
 
   TimeOfDay? time = const TimeOfDay(hour: 12,minute: 12);
@@ -19,7 +20,8 @@ class _TimerState extends State<Timer> {
 
 
 
-  @override
+
+    @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(title: Text('Timer page'), leading: IconButton(icon :Icon(Icons.arrow_back_ios), onPressed: () => Navigator.pushReplacementNamed(context, '/menu'),),),
@@ -59,6 +61,7 @@ class _TimerState extends State<Timer> {
               time = newTime;
               times.add(time);
               print(time);
+              DatabaseService(uid: 'null').uploadTime(times);
             });
           }
         },
