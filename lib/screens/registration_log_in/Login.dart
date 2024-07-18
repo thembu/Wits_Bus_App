@@ -36,7 +36,7 @@ class _Log_inState extends State<Log_in> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
+    return loading ? const Loading() : Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[300],
       body:  SafeArea(
@@ -141,10 +141,7 @@ class _Log_inState extends State<Log_in> {
                   padding:  EdgeInsets.all(25.0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      if(_formKey.currentState!.validate()) {
-                        setState(() {
-                          loading = true;
-                        });
+
 
                         if(!email.contains("@students.wits.ac.za")) {
                           Wrapper.student = false;
@@ -153,13 +150,20 @@ class _Log_inState extends State<Log_in> {
                         }
 
                         dynamic result = await _auth.signIn(email, password);
+                        if(_formKey.currentState!.validate() && result != null) {
+                          setState(() {
+                            loading = true;
+                          });
+                        print(loading);
 
                         if(result == null) {
                           setState(() {
                             loading = false;
-                            error = 'wrong cridentials';
+                            error = 'wrong credentials';
                           });
                         }
+
+                        print(loading);
 
                       }
                     },
